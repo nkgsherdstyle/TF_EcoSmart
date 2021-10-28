@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Categoria;
-import pe.edu.upc.spring.model.Race;
 import pe.edu.upc.spring.repository.ICategoriaRepository;
 import pe.edu.upc.spring.service.ICategoriaService;
 
@@ -61,5 +60,5 @@ public class CategoriaServiceImpl implements ICategoriaService {
 		} 
 		return flag;
 	}
-
+/*CREO QUE BORRE EL REPOSITORIO TMR*/
 }
