@@ -15,5 +15,5 @@ public interface ICuponService {
 	
 	List<Cupon> listar(); 
 	
-	List<Cupon>findByNameCoupon (String nameCupon) throws Exception;
+	List<Cupon>findByNameCupon (String nombreCupon) throws Exception;
 }
