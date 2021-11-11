@@ -46,10 +46,13 @@
 						
 						<div class="form-group">
     					<label for="nombre">RECOLECTOR:</label>
-    					<input type="text" class="form-control" th:field="*{recolector}" id="nombre"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('recolector')}" 
-								th:errors="*{recolector}">
+    					<select class="form-control" th:field="*{recolector.idRecolector}">
+    						<option th:each="reco: ${listaRecolectores}"
+    							th:value="${reco.idRecolector}"
+    							th:text="${reco.nombre}"
+    							th:selected="(${reco.idRecolector} == *{recolector.idRecolector})">
+    						</option>    					
+    					</select>
 						</div>
     					
     				</div>

@@ -54,29 +54,30 @@
     								<th class="text-center">DIRECCION</th>
     								<th class="text-center">CALIFICACION</th>
     								<th class="text-center">PUNTO</th>
-    								<th class="text-center">TIPO</th>
+    								<th class="text-center">TIPO</th> 
+    								<th class="text-center">DISTRITO</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="re: ${listaRecicladores}">
-    								<td th:text="${re.idRecilador}"></td>
-    								<td th:text="${re.usuario}"></td>
-    								<td th:text="${re.contrasena}"></td>
-    								<td th:text="${re.nombre}"></td>
-    								<td th:text="${re.apellido}"></td>
-    								<td th:text="${re.dni}"></td>
-    								<td th:text="${re.celular}"></td>
-    								<td th:text="${re.email}"></td>
-    								<td th:text="${re.direccion}"></td>
-    								<td th:text="${re.calificacion}"></td>
-    								<td th:text="${re.punto}"></td>
-    								<td th:text="${re.tipo}"></td>
+    							<tr th:each="rec: ${listaRecicladores}">
+    								<td th:text="${rec.idReciclador}"></td>
+    								<td th:text="${rec.usuario}"></td>
+    								<td th:text="${rec.contrasena}"></td>
+    								<td th:text="${rec.nombre}"></td>
+    								<td th:text="${rec.apellido}"></td>
+    								<td th:text="${rec.dni}"></td>
+    								<td th:text="${rec.celular}"></td>
+    								<td th:text="${rec.email}"></td>
+    								<td th:text="${rec.direccion}"></td>
+    								<td th:text="${rec.calificacion}"></td>
+    								<td th:text="${rec.punto}"></td>
+    								<td th:text="${rec.tipo}"></td>
+    								<td th:text="${rec.distrito.nombre}"></td>
     								
-    								
-    								<td><a th:href="@{/reciclador/eliminar?id=}+${cat.idReciclador}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/reciclador/modificar/'}+${cat.idReciclador}">Modificar</a></td>
+    								<td><a th:href="@{/reciclador/eliminar?id=}+${rec.idReciclador}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/reciclador/modificar/'}+${rec.idReciclador}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

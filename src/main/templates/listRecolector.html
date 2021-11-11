@@ -54,30 +54,29 @@
     								<th class="text-center">DIRECCION</th>
     								<th class="text-center">CALIFICACION</th>
     								<th class="text-center">TIPO</th>
-    								<th class="text-center">GANANCIA</th>
+    								<th class="text-center">DISTRITO</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="re: ${listaRecolectores}">
-    								<td th:text="${re.idRecilador}"></td>
-    								<td th:text="${re.usuario}"></td>
-    								<td th:text="${re.contrasena}"></td>
-    								<td th:text="${re.nombre}"></td>
-    								<td th:text="${re.apellido}"></td>
-    								<td th:text="${re.dni}"></td>
-    								<td th:text="${re.celular}"></td>
-    								<td th:text="${re.email}"></td>
-    								<td th:text="${re.direccion}"></td>
-    								<td th:text="${re.calificacion}"></td>
-    								<td th:text="${re.tipo}"></td>
-    								<td th:text="${re.ganancia}"></td>
+    							<tr th:each="reco: ${listaRecolectores}">
+    								<td th:text="${reco.idRecolector}"></td>
+    								<td th:text="${reco.usuario}"></td>
+    								<td th:text="${reco.contrasena}"></td>
+    								<td th:text="${reco.nombre}"></td>
+    								<td th:text="${reco.apellido}"></td>
+    								<td th:text="${reco.dni}"></td>
+    								<td th:text="${reco.celular}"></td>
+    								<td th:text="${reco.email}"></td>
+    								<td th:text="${reco.direccion}"></td>
+    								<td th:text="${reco.calificacion}"></td>
+    								<td th:text="${reco.tipo}"></td>
+    								<td th:text="${reco.distrito.nombre}"></td>
     								
     								
-    								
-    								<td><a th:href="@{/recolector/eliminar?id=}+${cat.idRecolector}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/recolector/modificar/'}+${cat.idRecolector}">Modificar</a></td>
+    								<td><a th:href="@{/recolector/eliminar?id=}+${reco.idRecolector}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/recolector/modificar/'}+${reco.idRecolector}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 
