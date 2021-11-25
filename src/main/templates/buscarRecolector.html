@@ -1,93 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Recolectores</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
 
-	<head>
-	
-		<meta charset="UTF-8"></meta>
-		<title>Busqueda</title>
-		
-		<script type="text/javascript"
-				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
-		</script>
-		
-		<link
-			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-			rel="stylesheet" id="bootstrap-css">
-		</link>
-		
-		<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
-		</script>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-	</head>
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<div class="row clearfix">
+									<div class="col-md-12 column">
+										<h1 class="btn btn-primary btn-md left-block">Busquedas</h1>
+											<br><br>
+									</div>
+								
+									<form th:action="@{/recolector/buscar}" method="post"
+										th:object="${recolector}">
+										<div class="form-group mt-3">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" th:field="*{nombre}"
+													id="buscar"
+													placeholder="Ingrese dato a buscar por Nombre ,Recolector">
+												</input>
+												<div align="left">
+													<button type="submit" class="btn btn-success">Buscar</button>
+													<a href="/recolector/listar" class="btn btn-default">Cancelar</a>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
 
-	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container-fluid">
-    		<div class="row clearfix">
-    			<h1 class="btn btn-primary btn-md left-block">Busquedas</h1>
-    			<form th:action="@{/recolector/buscar}" method="post" th:object="${recolector}">
-    				<div class="form-group">
-    					<div class="col-sm-12">
-    						<input type="text" class="form-control" th:field="*{nombreRecolector}"
-    							id="buscar" placeholder="Ingrese dato a buscar por Nombre ,Recolector">
-    							</input>
-    							<div align="left">
-    								<button type="submit" class="btn btn-danger">Buscar</button>
-    								<a href="/recolector/listar" class="btn btn-dark">Cancelar</a>
-    							</div>
-    						</div>
-    					</div>
-    				</form>
-    			</div>
-    			
-    			<hr class="sidebar-divider">
-    			
-    			<table class="table table-bordered table-hover table-striped" id="tab_logic">
-    				<thead>
-    					<tr>
-    						<th class="text-center">ID RECICLADOR</th>
-    						<th class="text-center">USUARIO</th>
-    						<th class="text-center">CONTRASENA</th>
-    						<th class="text-center">NOMBRE</th>
-    						<th class="text-center">APELLIDO</th>
-    						<th class="text-center">DNI</th>
-    						<th class="text-center">CELULAR</th>
-    						<th class="text-center">EMAIL</th>
-    						<th class="text-center">DIRECCION</th>
-    						<th class="text-center">CALIFICACION</th>
-    						<th class="text-center">TIPO</th>
-    						<th class="text-center">GANANCIA</th>
-    						<th class="text-center">DISTRITO</th>
-    						<th class="text-center">OPERACION</th>
-    						<th class="text-center">OPERACION</th>
-    					</tr>
-    				</thead>
-    				<tbody>
-    					<tr th:each="re: ${listaRecolectores}">
-    								<td th:text="${re.idRecilador}"></td>
-    								<td th:text="${re.usuario}"></td>
-    								<td th:text="${re.contrasena}"></td>
-    								<td th:text="${re.nombre}"></td>
-    								<td th:text="${re.apellido}"></td>
-    								<td th:text="${re.dni}"></td>
-    								<td th:text="${re.celular}"></td>
-    								<td th:text="${re.email}"></td>
-    								<td th:text="${re.direccion}"></td>
-    								<td th:text="${re.calificacion}"></td>
-    								<td th:text="${re.tipo}"></td>
-    								<td th:text="${re.ganancia}"></td>
-    					</tr>
-    				</tbody>
-    			</table> 
-    			
-    			<p th:text="${mensaje}" class="form-text text-dark"></p>
-    				
-    		</div>
-    		
-    	<div th:replace="fragments/footer :: footer"></div>
-	</body>
+								<hr class="sidebar-divider">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover table-striped"
+										id="tab_logic">
+										<thead>
+											<tr>
+												<th class="text-center">ID RECICLADOR</th>
+												<th class="text-center">USUARIO</th>
+												<th class="text-center">CONTRASENA</th>
+												<th class="text-center">NOMBRE</th>
+												<th class="text-center">APELLIDO</th>
+												<th class="text-center">DNI</th>
+												<th class="text-center">CELULAR</th>
+												<th class="text-center">EMAIL</th>
+												<th class="text-center">DIRECCION</th>
+												<th class="text-center">CALIFICACION</th>
+												<th class="text-center">TIPO</th>
+												<th class="text-center">GANANCIA</th>
+												<th class="text-center">DISTRITO</th>
+												<th class="text-center" colspan="2">OPERACION</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="re: ${listaRecolectores}">
+												<td th:text="${re.idRecilador}"></td>
+												<td th:text="${re.usuario}"></td>
+												<td th:text="${re.contrasena}"></td>
+												<td th:text="${re.nombre}"></td>
+												<td th:text="${re.apellido}"></td>
+												<td th:text="${re.dni}"></td>
+												<td th:text="${re.celular}"></td>
+												<td th:text="${re.email}"></td>
+												<td th:text="${re.direccion}"></td>
+												<td th:text="${re.calificacion}"></td>
+												<td th:text="${re.tipo}"></td>
+												<td th:text="${re.ganancia}"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<p th:text="${mensaje}" class="form-text text-dark"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
 
 </html>

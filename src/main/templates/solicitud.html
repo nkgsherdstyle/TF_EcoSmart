@@ -1,85 +1,84 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Solicitud</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
 
-	<head>
-	
-		<meta charset="ISO-8859-1"></meta>
-		<title>Solicitud</title>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-				rel="stylesheet" id="bootstrap-css">
-		</link>
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form th:action="@{/solicitud/registrar}" method="post"
+									th:object="${solicitud}">
+									<div class="form-group">
+										<label for="idsolicitud">ID:</label> <input type="text"
+											class="form-control" th:field="*{idSolicitud}"></input>
 
-		<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
-		</script>
-		
-		<script type="text/javascript" th:src="@{/js/solicitud.js}"></script>
-				
-	</head>
+										<div class="form-group">
+											<label for="nombre">FECHA:</label> <input type="date"
+												class="form-control" th:field="*{fecha}" id="nombre"></input>
 
-	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container">
-    		<form th:action="@{/solicitud/registrar}" method="post" th:object="${solicitud}">
-    			<div class="form-group">
-    				<label for="idsolicitud">ID:</label>
-    				<input type="text" class="form-control" th:field="*{idSolicitud}"></input>
-    				
-    				<div class="form-group">
-    					<label for="nombre">FECHA:</label>
-    					<input type="date" class="form-control" th:field="*{fecha}" id="nombre"></input>
+											<div class="alert alert-danger"
+												th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}">
+											</div>
 
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('fecha')}" 
-								th:errors="*{fecha}">
+											<div class="form-group">
+												<label for="nombre">MONTO TOTAL:</label> <input type="text"
+													class="form-control" th:field="*{montoTotal}" id="nombre"></input>
+
+												<div class="alert alert-danger"
+													th:if="${#fields.hasErrors('montoTotal')}"
+													th:errors="*{montoTotal}"></div>
+
+												<div class="form-group">
+													<label for="nombre">ESTADO:</label> <input type="text"
+														class="form-control" th:field="*{estado}" id="nombre"></input>
+
+													<div class="alert alert-danger"
+														th:if="${#fields.hasErrors('estado')}"
+														th:errors="*{estado}"></div>
+
+													<div class="form-group">
+														<label for="nombre">RECICLADOR:</label> <select
+															class="form-control"
+															th:field="*{reciclador.idReciclador}">
+															<option th:each="rec: ${listaRecicladores}"
+																th:value="${rec.idReciclador}" th:text="${rec.nombre}"
+																th:selected="(${rec.idReciclador} == *{reciclador.idReciclador})">
+															</option>
+														</select>
+													</div>
+
+													<div class="form-group">
+														<label for="nombre">RECOLECTOR:</label> <select
+															class="form-control"
+															th:field="*{recolector.idRecolector}">
+															<option th:each="reco: ${listaRecolectores}"
+																th:value="${reco.idRecolector}" th:text="${reco.nombre}"
+																th:selected="(${reco.idRecolector} == *{recolector.idRecolector})">
+															</option>
+														</select>
+													</div>
+
+												</div>
+												<button type="submit" class="btn btn-primary">Aceptar</button>
+												<a href="/solicitud/listar" class="btn btn-danger">Cancelar</a>
+								</form>
+							</div>
 						</div>
-						
-						<div class="form-group">
-    					<label for="nombre">MONTO TOTAL:</label>
-    					<input type="text" class="form-control" th:field="*{montoTotal}" id="nombre"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('montoTotal')}" 
-								th:errors="*{montoTotal}">
-						</div>
-						
-						<div class="form-group">
-    					<label for="nombre">ESTADO:</label>
-    					<input type="text" class="form-control" th:field="*{estado}" id="nombre"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('estado')}" 
-								th:errors="*{estado}">
-						</div>
-						
-					<div class="form-group">
-    					<label for="nombre">RECICLADOR:</label>
-    					<select class="form-control" th:field="*{reciclador.idReciclador}">
-    						<option th:each="rec: ${listaRecicladores}"
-    							th:value="${rec.idReciclador}"
-    							th:text="${rec.nombre}"
-    							th:selected="(${rec.idReciclador} == *{reciclador.idReciclador})">
-    						</option>    					
-    					</select>
-    				  </div>
-						
-						<div class="form-group">
-    					<label for="nombre">RECOLECTOR:</label>
-    					<select class="form-control" th:field="*{recolector.idRecolector}">
-    						<option th:each="reco: ${listaRecolectores}"
-    							th:value="${reco.idRecolector}"
-    							th:text="${reco.nombre}"
-    							th:selected="(${reco.idRecolector} == *{recolector.idRecolector})">
-    						</option>    					
-    					</select>
-    				  </div>
-    				
-    			</div>
-    			<button type="submit" class="btn btn-primary">Aceptar</button>
-    			<a href="/solicitud/listar" class="btn btn-danger">Cancelar</a>
-    		</form>
-    	</div>
-    	<div th:replace="fragments/footer :: footer"></div>
-	</body>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
 
 </html>

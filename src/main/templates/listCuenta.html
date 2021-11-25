@@ -1,72 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Cuenta</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
 
-	<head>
-	
-		<meta charset="UTF-8"></meta>
-		<title>Cuentas</title>
-		
-		<script type="text/javascript"
-				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
-		</script>
-		
-		<link
-			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-			rel="stylesheet" id="bootstrap-css">
-		</link>
-		
-		<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
-		</script>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-	</head>
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form id="myform">
+									<div class="row clearfix">
+										<div class="col-md-12 column">
 
-	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container">
-    		<form id="myform">
-    			<div class="row clearfix">
-    				<div class="col-md-12 column">
-    					
-    					<a 	style="border-bottom-color: green" th:href="@{/cuenta/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Cuenta
-    					</a>
-    					
-    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
-    						<thead>
-    							<tr>
-    								<th class="text-center">ID CUENTA</th>
-    								<th class="text-center">NUMERO CUENTA</th>
-    								<th class="text-center">CONTRASENA CUENTA</th>
-    								<th class="text-center">RECOLECTOR</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
-    							</tr>
-    						</thead>
-    						<tbody>
-    							<tr th:each="cue: ${listaCuentas}">
-    								<td th:text="${cue.idCuenta}"></td>
-    								<td th:text="${cue.numeroCuenta}"></td>
-    								<td th:text="${cue.contrasenaCuenta}"></td>
-    								<td th:text="${cue.recolector.nombre}"></td>
-    								
-    								<td><a th:href="@{/cuenta/eliminar?id=}+${cue.idCuenta}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/cuenta/modificar/'}+${cue.idCuenta}">Modificar</a></td>
-    							</tr>
-    						</tbody>
-    					</table> 
-    					
-    				</div>
-    			</div>
-    			<div th:if="${mensaje}" class="alert alert-danger">
-    				<p th:text="${mensaje}"></p>
-    			</div>
-    		</form>
-    	</div>
-    	<div th:replace="fragments/footer :: footer"></div>
-	</body>
+											<a style="border-bottom-color: green"
+												th:href="@{/cuenta/irRegistrar}" id="add-row" type="button"
+												class="btn btn-primary btn-md left-block"> <span
+												class="glyphicon glyphicon-plus"></span> Cuenta
+											</a>
+											<hr>
+											<div class="table-responsive">
+												<table
+													class="table table-bordered table-hover table-striped text-center"
+													id="tab_logic">
+													<thead>
+														<tr>
+															<th class="text-center">ID CUENTA</th>
+															<th class="text-center">NUMERO CUENTA</th>
+															<th class="text-center">CONTRASENA CUENTA</th>
+															<th class="text-center">RECOLECTOR</th>
+															<th class="text-center">OPERACION</th>
+															<th class="text-center">OPERACION</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="cue: ${listaCuentas}">
+															<td th:text="${cue.idCuenta}"></td>
+															<td th:text="${cue.numeroCuenta}"></td>
+															<td th:text="${cue.contrasenaCuenta}"></td>
+															<td th:text="${cue.recolector.nombre}"></td>
+
+															<td><a
+																th:href="@{/cuenta/eliminar?id=}+${cue.idCuenta}"
+																class="btn btn-danger">Eliminar</a></td>
+															<td><a
+																th:href="@{'/cuenta/modificar/'}+${cue.idCuenta}"
+																class="btn btn-info">Modificar</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+
+										</div>
+									</div>
+									<div th:if="${mensaje}" class="alert alert-danger">
+										<p th:text="${mensaje}"></p>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
 
 </html>
