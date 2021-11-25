@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Distrito</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
+
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form th:action="@{/distrito/registrar}" method="post"
+									th:object="${distrito}">
+									<div class="form-group">
+										<label for="iddistrito">ID:</label> <input type="text"
+											class="form-control" th:field="*{idDistrito}"></input>
+
+										<div class="form-group">
+											<label for="nombre">NOMBRE:</label> <input type="text"
+												class="form-control" th:field="*{nombre}" id="nombre"></input>
+
+											<div class="alert alert-danger"
+												th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+											</div>
+
+										</div>
+
+									</div>
+									<button type="submit" class="btn btn-primary">Aceptar</button>
+									<a href="/distrito/listar" class="btn btn-danger">Cancelar</a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
+
+</html>

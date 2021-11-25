@@ -15,8 +15,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Cuenta;
+import pe.edu.upc.spring.model.Cuenta; 
+import pe.edu.upc.spring.model.Recolector;
+
 import pe.edu.upc.spring.service.ICuentaService;
+import pe.edu.upc.spring.service.IRecolectorService;
 
 
 
@@ -28,7 +31,12 @@ public class CuentaController {
 	private ICuentaService cueService;
 
 	
+	@Autowired
 
+	private IRecolectorService recoService;
+
+	
+	
 	@RequestMapping("/bienvenido")
 
 	public String irPaginaBienvenida() {
@@ -56,7 +64,10 @@ public class CuentaController {
 	public String irPaginaRegistrar(Model model) {
 
 		model.addAttribute("cuenta", new Cuenta());
-
+		model.addAttribute("recolector", new Recolector());
+		
+		model.addAttribute("listaRecolectores", recoService.listar());
+		
 		return "cuenta";
 
 	}
@@ -114,8 +125,10 @@ public class CuentaController {
 		}
 
 		else {
+			model.addAttribute("listaRecolectores", recoService.listar());
 
-			model.addAttribute("cuenta", objCuenta);
+			if (objCuenta.isPresent())
+				objCuenta.ifPresent(o -> model.addAttribute("cuenta", o));
 
 			return "cuenta";
 

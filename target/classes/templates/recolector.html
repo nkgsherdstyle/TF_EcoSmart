@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Recolectores</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
+
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form th:action="@{/recolector/registrar}" method="post" th:object="${recolector}">
+    			<div class="form-group">
+    				<label for="idrecolector">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idRecolector}"></input>
+    				
+    				<div class="form-group">
+    					<label for="nombre">USUARIO:</label>
+    					<input type="text" class="form-control" th:field="*{usuario}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('usuario')}" 
+								th:errors="*{usuario}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">CONTRASENA:</label>
+    					<input type="text" class="form-control" th:field="*{contrasena}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
+								th:errors="*{contrasena}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{nombre}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" 
+								th:errors="*{nombre}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">APELLIDO:</label>
+    					<input type="text" class="form-control" th:field="*{apellido}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('apellido')}" 
+								th:errors="*{apellido}">
+						</div>
+						
+						
+						<div class="form-group">
+    					<label for="nombre">DNI:</label>
+    					<input type="text" class="form-control" th:field="*{dni}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" 
+								th:errors="*{dni}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">CELULAR:</label>
+    					<input type="text" class="form-control" th:field="*{celular}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('celular')}" 
+								th:errors="*{celular}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">EMAIL:</label>
+    					<input type="text" class="form-control" th:field="*{email}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('email')}" 
+								th:errors="*{email}">
+						</div>
+						
+							<div class="form-group">
+    					<label for="nombre">DIRECCION:</label>
+    					<input type="text" class="form-control" th:field="*{direccion}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('direccion')}" 
+								th:errors="*{direccion}">
+						</div>
+						
+						<!--		<div class="form-group">
+    					<label for="nombre">CALIFICACION:</label>
+    					<input type="text" class="form-control" th:field="*{calificacion}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('calificacion')}" 
+								th:errors="*{calificacion}">
+						</div>-->
+						
+							<div class="form-group">
+    					<label for="nombre">TIPO:</label>
+    					<input type="text" class="form-control" th:field="*{tipo}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('tipo')}" 
+								th:errors="*{tipo}">
+						</div>
+						
+				<!-- 			<div class="form-group">
+    					<label for="nombre">GANANCIA:</label>
+    					<input type="text" class="form-control" th:field="*{ganancia}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('ganancia')}" 
+								th:errors="*{ganancia}">
+						</div>  -->
+						
+						<div class="form-group">
+    					<label for="nombre">DISTRITO:</label>
+    					<select class="form-control" th:field="*{distrito.idDistrito}">
+    						<option th:each="dis: ${listaDistritos}"
+    							th:value="${dis.idDistrito}"
+    							th:text="${dis.nombre}"
+    							th:selected="(${dis.idDistrito} == *{distrito.idDistrito})">
+    						</option>    					
+    					</select>
+   						</div>
+						
+    					
+    				</div>
+    				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/recolector/listar" class="btn btn-danger">Cancelar</a>
+    		</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
+
+</html>

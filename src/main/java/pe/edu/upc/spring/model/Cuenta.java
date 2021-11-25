@@ -22,8 +22,8 @@ public class Cuenta implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCuenta; 
 	
-	@Column(name="numero_Cuenta", nullable=false)
-	private int numeroCuenta;
+	@Column(name="numero_Cuenta", nullable=false, length=13)
+	private long numeroCuenta;
 	
 	@Column(name ="contrasena_Cuenta", nullable=false) 
 	private String contrasenaCuenta; 
@@ -36,7 +36,7 @@ public class Cuenta implements Serializable {
 		super();
 	}
 
-	public Cuenta(int idCuenta, int numeroCuenta, String contrasenaCuenta, Recolector recolector) {
+	public Cuenta(int idCuenta, long numeroCuenta, String contrasenaCuenta, Recolector recolector) {
 		super();
 		this.idCuenta = idCuenta;
 		this.numeroCuenta = numeroCuenta;
@@ -52,11 +52,11 @@ public class Cuenta implements Serializable {
 		this.idCuenta = idCuenta;
 	}
 
-	public int getNumeroCuenta() {
+	public long getNumeroCuenta() {
 		return numeroCuenta;
 	}
 
-	public void setNumeroCuenta(int numeroCuenta) {
+	public void setNumeroCuenta(long numeroCuenta) {
 		this.numeroCuenta = numeroCuenta;
 	}
 

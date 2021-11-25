@@ -15,7 +15,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Residuo;
+
+import pe.edu.upc.spring.model.Residuo; 
+import pe.edu.upc.spring.model.Categoria;
+import pe.edu.upc.spring.model.Reciclador;
+
+import pe.edu.upc.spring.service.ICategoriaService;
+import pe.edu.upc.spring.service.IRecicladorService;
 import pe.edu.upc.spring.service.IResiduoService;
 
 
@@ -27,9 +33,13 @@ public class ResiduoController {
 	@Autowired
 
 	private IResiduoService resService;
-
 	
-
+	@Autowired
+	private ICategoriaService catService;
+	
+	@Autowired
+	private IRecicladorService recService; 
+	
 	@RequestMapping("/bienvenido")
 
 	public String irPaginaBienvenida() {
@@ -57,7 +67,12 @@ public class ResiduoController {
 	public String irPaginaRegistrar(Model model) {
 
 		model.addAttribute("residuo", new Residuo());
-
+		model.addAttribute("categoria", new Categoria());
+		model.addAttribute("reciclador", new Reciclador()); 
+		
+		
+		model.addAttribute("listaCategorias", catService.listar());	 
+		model.addAttribute("listaRecicladores", recService.listar());	
 		return "residuo";
 
 	}
@@ -73,9 +88,11 @@ public class ResiduoController {
 	{
 
 		if (binRes.hasErrors())
-
+		{		
+			model.addAttribute("listaCategorias", catService.listar());	 
+			model.addAttribute("listaRecicladores", recService.listar());	
 			return "residuo";
-
+		}
 		else {
 
 			boolean flag = resService.insertar(objResiduo);
@@ -115,9 +132,12 @@ public class ResiduoController {
 		}
 
 		else {
-
-			model.addAttribute("residuo", objResiduo);
-
+			model.addAttribute("listaCategorias", catService.listar());	
+			model.addAttribute("listaRecicladores", recService.listar());
+			
+			
+			if (objResiduo.isPresent())
+				objResiduo.ifPresent(o -> model.addAttribute("residuo", o));
 			return "residuo";
 
 		}
@@ -169,4 +189,7 @@ public class ResiduoController {
 		return "listResiduo";
 
 	}	
+	
+	
+	
 }

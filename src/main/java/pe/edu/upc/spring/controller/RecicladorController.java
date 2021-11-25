@@ -17,6 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Reciclador;
+import pe.edu.upc.spring.model.Distrito; 
+
+
+import pe.edu.upc.spring.service.IDistritoService;
 import pe.edu.upc.spring.service.IRecicladorService;
 
 
@@ -27,6 +31,10 @@ public class RecicladorController {
 
 	private IRecicladorService recService;
 
+	@Autowired
+
+	private IDistritoService disService;
+	
 	
 
 	@RequestMapping("/bienvenido")
@@ -56,8 +64,10 @@ public class RecicladorController {
 	public String irPaginaRegistrar(Model model) {
 
 		model.addAttribute("reciclador", new Reciclador());
-
-		return "reciclador";
+		model.addAttribute("distrito", new Distrito()); 
+		
+		model.addAttribute("listaDistritos", disService.listar());
+		return "reciclador"; 
 
 	}
 
@@ -113,9 +123,12 @@ public class RecicladorController {
 
 		}
 
-		else {
+		else { 
+			
+			model.addAttribute("listaDistritos", disService.listar());
 
-			model.addAttribute("Reciclador", objReciclador);
+			if (objReciclador.isPresent())
+				objReciclador.ifPresent(o -> model.addAttribute("reciclador", o));
 
 			return "reciclador";
 
@@ -172,7 +185,7 @@ public class RecicladorController {
 	public String irBuscar(Model model) 
 	{
 		model.addAttribute("reciclador", new Reciclador());
-		return "buscar";
+		return "buscarReciclador";
 	}
 	
 	

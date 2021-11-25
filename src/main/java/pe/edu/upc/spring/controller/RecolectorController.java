@@ -15,7 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Recolector;
+import pe.edu.upc.spring.model.Recolector; 
+import pe.edu.upc.spring.model.Distrito;
+
+import pe.edu.upc.spring.service.IDistritoService;
 import pe.edu.upc.spring.service.IRecolectorService;
 
 
@@ -26,7 +29,10 @@ public class RecolectorController {
 	@Autowired
 
 	private IRecolectorService recoService;
+	
+	@Autowired
 
+	private IDistritoService disService;
 	
 
 	@RequestMapping("/bienvenido")
@@ -55,8 +61,10 @@ public class RecolectorController {
 
 	public String irPaginaRegistrar(Model model) {
 
-		model.addAttribute("recolector", new Recolector());
-
+		model.addAttribute("recolector", new Recolector()); 
+		model.addAttribute("distrito", new Distrito());
+ 
+		model.addAttribute("listaDistritos", disService.listar());
 		return "recolector";
 
 	}
@@ -114,9 +122,13 @@ public class RecolectorController {
 		}
 
 		else {
-
-			model.addAttribute("Recolector", objRecolector);
-
+			model.addAttribute("listaDistritos", disService.listar());
+			
+			if (objRecolector.isPresent())
+				objRecolector.ifPresent(o -> model.addAttribute("recolector", o));
+			
+			
+			
 			return "recolector";
 
 		}
@@ -172,7 +184,7 @@ public class RecolectorController {
 	public String irBuscar(Model model) 
 	{
 		model.addAttribute("recolector", new Recolector());
-		return "buscar";
+		return "buscarRecolector"; 
 	}
 	
 }

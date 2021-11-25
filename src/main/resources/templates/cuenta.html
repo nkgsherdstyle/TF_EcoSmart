@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Cuenta</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
+
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form th:action="@{/cuenta/registrar}" method="post"
+									th:object="${cuenta}">
+									<div class="form-group">
+										<label for="idcuenta">ID:</label> <input type="text"
+											class="form-control" th:field="*{idCuenta}"></input>
+
+										<div class="form-group">
+											<label for="nombre">NUMERO DE CUENTA:</label> <input
+												type="text" class="form-control" th:field="*{numeroCuenta}"
+												id="nombre"></input>
+
+											<div class="alert alert-danger"
+												th:if="${#fields.hasErrors('numeroCuenta')}"
+												th:errors="*{numeroCuenta}"></div>
+
+											<div class="form-group">
+												<label for="nombre">CONTRASENA:</label> <input type="text"
+													class="form-control" th:field="*{contrasenaCuenta}"
+													id="nombre"></input>
+
+												<div class="alert alert-danger"
+													th:if="${#fields.hasErrors('contrasenaCuenta')}"
+													th:errors="*{contrasenaCuenta}"></div>
+
+												<div class="form-group">
+													<label for="nombre">RECOLECTOR:</label> <select
+														class="form-control" th:field="*{recolector.idRecolector}">
+														<option th:each="reco: ${listaRecolectores}"
+															th:value="${reco.idRecolector}" th:text="${reco.nombre}"
+															th:selected="(${reco.idRecolector} == *{recolector.idRecolector})">
+														</option>
+													</select>
+												</div>
+
+											</div>
+
+										</div>
+										<button type="submit" class="btn btn-primary">Aceptar</button>
+										<a href="/cuenta/listar" class="btn btn-danger">Cancelar</a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
+
+</html>
