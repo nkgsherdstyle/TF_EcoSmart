@@ -60,5 +60,5 @@ public class CategoriaServiceImpl implements ICategoriaService {
 		} 
 		return flag;
 	}
-/*CREO QUE BORRE EL REPOSITORIO TMR*/
+
 }

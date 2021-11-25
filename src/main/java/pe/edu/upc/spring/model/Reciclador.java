@@ -50,11 +50,11 @@ public class Reciclador implements Serializable {
 	private String direccion;
 	
 	
-	@Column(name="Calificacion", nullable=false)
-	private Integer calificacion;
+	/*@Column(name="Calificacion", nullable=false)
+	private Integer calificacion;*/
 	
-	@Column(name="Puntos", nullable=false, columnDefinition = "DECIMAL(4,1)")
-	private Float punto;
+	/*@Column(name="Puntos", nullable=false, columnDefinition = "DECIMAL(4,1)")
+	private Float punto;*/
 	
 	@Column(name="Tipo", nullable=false, length=15) 
 	private String tipo;
@@ -81,8 +81,8 @@ public class Reciclador implements Serializable {
 		this.celular = celular;
 		this.email = email;
 		this.direccion = direccion;
-		this.calificacion = calificacion;
-		this.punto = punto;
+	/*	this.calificacion = calificacion;
+		this.punto = punto;*/
 		this.tipo = tipo;
 		this.distrito = distrito;
 	}
@@ -159,7 +159,7 @@ public class Reciclador implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public Integer getCalificacion() {
+	/*public Integer getCalificacion() {
 		return calificacion;
 	}
 
@@ -173,7 +173,7 @@ public class Reciclador implements Serializable {
 
 	public void setPunto(Float punto) {
 		this.punto = punto;
-	}
+	}*/
 
 	public String getTipo() {
 		return tipo;

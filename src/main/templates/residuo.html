@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Residuo</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/residuo.js}"></script>
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/residuo/registrar}" method="post" th:object="${residuo}">
+    			<div class="form-group">
+    				<label for="idresiduo">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idResiduo}"></input>
+    				
+    				<div class="form-group">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{nombre}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" 
+								th:errors="*{nombre}">
+						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">CATEGORIA:</label>
+    					<select class="form-control" th:field="*{categoria.idCategoria}">
+    						<option th:each="cat: ${listaCategorias}"
+    							th:value="${cat.idCategoria}"
+    							th:text="${cat.nombre}"
+    							th:selected="(${cat.idCategoria} == *{categoria.idCategoria})">
+    						</option>    					
+    					</select>
+   						</div>
+						
+						<div class="form-group">
+    					<label for="nombre">RECICLADOR:</label>
+    					<select class="form-control" th:field="*{reciclador.idReciclador}">
+    						<option th:each="rec: ${listaRecicladores}"
+    							th:value="${rec.idReciclador}"
+    							th:text="${rec.nombre}"
+    							th:selected="(${rec.idReciclador} == *{reciclador.idReciclador})">
+    						</option>    					
+    					</select>
+    				  </div>
+    				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/residuo/listar" class="btn btn-danger">Cancelar</a>
+    		</form>
+    	</div>
+    	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+
+</html>

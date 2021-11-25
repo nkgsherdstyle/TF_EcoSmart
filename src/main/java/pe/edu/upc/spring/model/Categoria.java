@@ -61,6 +61,4 @@ public class Categoria implements Serializable {
 		this.precioKilo = precioKilo;
 	}
 
-
-
 }

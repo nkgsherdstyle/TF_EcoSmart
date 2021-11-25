@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity 
 @Table(name="Recolector")
 	
@@ -47,14 +46,14 @@ public class Recolector implements Serializable {
 	private String direccion;
 	
 	
-	@Column(name="Calificacion", nullable=false, columnDefinition = "DECIMAL(3,1)")
-	private Float calificacion;
+	/*@Column(name="Calificacion", nullable=false, columnDefinition = "DECIMAL(3,1)")
+	private Float calificacion;*/
 	
 	@Column(name="Tipo", nullable=false, length=15) 
 	private String tipo;
 	
-	@Column(name="Ganancia", nullable=false, columnDefinition = "DECIMAL(4,1)")
-	private Float ganancia;
+	/*@Column(name="Ganancia", nullable=false, columnDefinition = "DECIMAL(4,1)")
+	private Float ganancia;*/
 	
 	@ManyToOne
 	@JoinColumn(name="idDistrito", nullable = false)
@@ -62,7 +61,6 @@ public class Recolector implements Serializable {
 
 	public Recolector() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Recolector(int idRecolector, String usuario, String contrasena, String nombre, String apellido, Integer dni,
@@ -78,9 +76,9 @@ public class Recolector implements Serializable {
 		this.celular = celular;
 		this.email = email;
 		this.direccion = direccion;
-		this.calificacion = calificacion;
+	/*	this.calificacion = calificacion;*/
 		this.tipo = tipo;
-		this.ganancia = ganancia;
+	/*	this.ganancia = ganancia; */
 		this.distrito = distrito;
 	}
 
@@ -156,13 +154,13 @@ public class Recolector implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public Float getCalificacion() {
+	/*public Float getCalificacion() {
 		return calificacion;
-	}
+	}*/
 
-	public void setCalificacion(Float calificacion) {
+	/*public void setCalificacion(Float calificacion) {
 		this.calificacion = calificacion;
-	}
+	}*/
 
 	public String getTipo() {
 		return tipo;
@@ -172,13 +170,13 @@ public class Recolector implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Float getGanancia() {
+/*	public Float getGanancia() {
 		return ganancia;
 	}
 
 	public void setGanancia(Float ganancia) {
 		this.ganancia = ganancia;
-	}
+	}*/
 
 	public Distrito getDistrito() {
 		return distrito;
@@ -188,7 +186,4 @@ public class Recolector implements Serializable {
 		this.distrito = distrito;
 	}
 
-	
-
-	
 }

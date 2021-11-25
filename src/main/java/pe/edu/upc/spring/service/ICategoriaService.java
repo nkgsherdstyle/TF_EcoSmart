@@ -12,6 +12,5 @@ public interface ICategoriaService {
 	public boolean modificar(Categoria categoria); 
 	public void eliminar(int idCategoria); 
 	public Optional<Categoria> listarId(int idCategoria); 
-	
 	List<Categoria> listar(); 
 }

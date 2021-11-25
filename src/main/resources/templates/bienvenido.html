@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Eco Smart</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
+
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form id="myform">
+									<div class="row clearfix">
+										<div class="col-md-12 column" align="center">
+											<img th:src="@{/imagenes/imagen4.jpg}" width="1100"
+												height="550" alt="logo" align="middle"> </img>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
+
+</html>
