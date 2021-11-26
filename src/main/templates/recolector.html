@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/PublicLayout :: head(~{::title})">
+<title>Recolectores</title>
+</head>
+<body>
+	<section id="container">
+		<div th:replace="fragments/PublicLayout :: header"></div>
+		<div th:replace="fragments/PublicLayout :: aside"></div>
 
-	<head>
-	
-		<meta charset="ISO-8859-1"></meta>
-		<title>Recolector</title>
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-				rel="stylesheet" id="bootstrap-css">
-		</link>
-
-		<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
-		</script>
-		
-		<script type="text/javascript" th:src="@{/js/recolector.js}"></script>
-				
-	</head>
-
-	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container">
-    		<form th:action="@{/recolector/registrar}" method="post" th:object="${recolector}">
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<br>
+					<div class="col-md-12 mt-3">
+						<div class="content-panel">
+							<div class="container-fluid ">
+								<form th:action="@{/recolector/registrar}" method="post" th:object="${recolector}">
     			<div class="form-group">
     				<label for="idrecolector">ID:</label>
     				<input type="text" class="form-control" th:field="*{idRecolector}"></input>
@@ -38,7 +30,7 @@
 						
 						<div class="form-group">
     					<label for="nombre">CONTRASENA:</label>
-    					<input type="text" class="form-control" th:field="*{contrasena}" id="nombre"></input>
+    					<input type="text" name="contrasena" maxlength="16" title="Contraseña no válida" id="contrasena" class="form-control" /> 
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('contrasena')}" 
 								th:errors="*{contrasena}">
@@ -63,15 +55,15 @@
 						
 						<div class="form-group">
     					<label for="nombre">DNI:</label>
-    					<input type="text" class="form-control" th:field="*{dni}" id="nombre"></input>
-
+    					<input type="text" name="dni" pattern="[0-9]{8}" maxlength="8" id="dni" class="form-control" />
+    					
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('dni')}" 
 								th:errors="*{dni}">
 						</div>
 						
 						<div class="form-group">
     					<label for="nombre">CELULAR:</label>
-    					<input type="text" class="form-control" th:field="*{celular}" id="nombre"></input>
+    					<input type="text" name="celular" pattern="[0-9]{9}" maxlength="9" id="celular" class="form-control" />
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('celular')}" 
 								th:errors="*{celular}">
@@ -93,13 +85,6 @@
 								th:errors="*{direccion}">
 						</div>
 						
-							<div class="form-group">
-    					<label for="nombre">CALIFICACION:</label>
-    					<input type="text" class="form-control" th:field="*{calificacion}" id="nombre"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('calificacion')}" 
-								th:errors="*{calificacion}">
-						</div>
 						
 							<div class="form-group">
     					<label for="nombre">TIPO:</label>
@@ -128,8 +113,14 @@
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/recolector/listar" class="btn btn-danger">Cancelar</a>
     		</form>
-    	</div>
-    	<div th:replace="fragments/footer :: footer"></div>
-	</body>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+	<div th:replace="fragments/PublicLayout :: js"></div>
+</body>
 
 </html>
